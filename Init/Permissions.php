@@ -17,20 +17,20 @@ class Permissions implements IPermissionInit
     {
         return [
             new PermissionInitType(
-                code: 'sitemapexplorer.manage',
-                description: LangManager::translate('sitemapexplorer.permissions.manage'),
+                code: 'SitemapExplorer.manage',
+                description: LangManager::translate('SitemapExplorer.permissions.manage'),
             ),
             new PermissionInitType(
-                code: 'sitemapexplorer.create',
-                description: LangManager::translate('sitemapexplorer.permissions.create'),
+                code: 'SitemapExplorer.create',
+                description: LangManager::translate('SitemapExplorer.permissions.create'),
             ),
             new PermissionInitType(
-                code: 'sitemapexplorer.edit',
-                description: LangManager::translate('sitemapexplorer.permissions.edit'),
+                code: 'SitemapExplorer.edit',
+                description: LangManager::translate('SitemapExplorer.permissions.edit'),
             ),
             new PermissionInitType(
-                code: 'sitemapexplorer.delete',
-                description: LangManager::translate('sitemapexplorer.permissions.delete'),
+                code: 'SitemapExplorer.delete',
+                description: LangManager::translate('SitemapExplorer.permissions.delete'),
             ),
         ];
     }

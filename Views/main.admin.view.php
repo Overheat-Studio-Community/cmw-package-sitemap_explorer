@@ -6,8 +6,8 @@ use CMW\Manager\Security\SecurityManager;
 use CMW\Manager\Xml\SitemapItemEntity;
 use CMW\Utils\Website;
 
-Website::setTitle(LangManager::translate('sitemapexplorer.title'));
-Website::setDescription(LangManager::translate('sitemapexplorer.description'));
+Website::setTitle(LangManager::translate('SitemapExplorer.title'));
+Website::setDescription(LangManager::translate('SitemapExplorer.description'));
 
 /* @var SitemapItemEntity[] $sitemapItems */
 ?>
@@ -16,13 +16,13 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
     <div>
         <h2 class="text-2xl font-bold flex items-center">
             <i class="fas fa-sitemap text-blue-600 mr-3"></i>
-            <?= LangManager::translate('sitemapexplorer.title') ?>
+            <?= LangManager::translate('SitemapExplorer.title') ?>
         </h2>
-        <p class="text-gray-600 dark:text-gray-400 mt-1"><?= LangManager::translate('sitemapexplorer.list.subtitle') ?></p>
+        <p class="text-gray-600 dark:text-gray-400 mt-1"><?= LangManager::translate('SitemapExplorer.list.subtitle') ?></p>
     </div>
     <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>cmw-admin/sitemapexplorer/add"
        class="btn-primary flex items-center">
-        <i class="fas fa-plus mr-2"></i><?= LangManager::translate('sitemapexplorer.add.title') ?>
+        <i class="fas fa-plus mr-2"></i><?= LangManager::translate('SitemapExplorer.add.title') ?>
     </a>
 </div>
 
@@ -35,7 +35,7 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
                 <i class="fas fa-link text-2xl text-blue-600 dark:text-blue-400"></i>
             </div>
             <h3 class="text-2xl font-bold text-blue-800 dark:text-blue-300"><?= count($sitemapItems) ?></h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400"><?= LangManager::translate('sitemapexplorer.info.total') ?></p>
+            <p class="text-sm text-gray-600 dark:text-gray-400"><?= LangManager::translate('SitemapExplorer.info.total') ?></p>
         </div>
     </div>
 
@@ -47,7 +47,7 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
                 <i class="fas fa-star text-2xl text-green-600 dark:text-green-400"></i>
             </div>
             <h3 class="text-2xl font-bold text-green-800 dark:text-green-300"><?= count(array_filter($sitemapItems, static fn($item) => $item->getPriority() >= 0.8)) ?></h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400"><?= LangManager::translate('sitemapexplorer.stats.high_priority') ?></p>
+            <p class="text-sm text-gray-600 dark:text-gray-400"><?= LangManager::translate('SitemapExplorer.stats.high_priority') ?></p>
         </div>
     </div>
 
@@ -59,7 +59,7 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
                 <i class="fas fa-chart-line text-2xl text-amber-600 dark:text-amber-400"></i>
             </div>
             <h3 class="text-2xl font-bold text-amber-800 dark:text-amber-300"><?= count(array_filter($sitemapItems, static fn($item) => $item->getPriority() >= 0.5 && $item->getPriority() < 0.8)) ?></h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400"><?= LangManager::translate('sitemapexplorer.stats.medium_priority') ?></p>
+            <p class="text-sm text-gray-600 dark:text-gray-400"><?= LangManager::translate('SitemapExplorer.stats.medium_priority') ?></p>
         </div>
     </div>
 
@@ -75,7 +75,7 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
                 <a href="<?= EnvManager::getInstance()->getValue('PATH_URL') ?>sitemap.xml"
                    target="_blank"
                    class="text-cyan-600 hover:text-cyan-800 dark:text-cyan-400 dark:hover:text-cyan-300 hover:underline">
-                    <?= LangManager::translate('sitemapexplorer.info.file_link') ?>
+                    <?= LangManager::translate('SitemapExplorer.info.file_link') ?>
                 </a>
             </p>
         </div>
@@ -86,7 +86,7 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
     <div class="card-title">
         <h5 class="flex items-center font-semibold">
             <i class="fas fa-list mr-2"></i>
-            <?= LangManager::translate('sitemapexplorer.list.title') ?>
+            <?= LangManager::translate('SitemapExplorer.list.title') ?>
         </h5>
     </div>
 
@@ -96,12 +96,12 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
                 <i class="fas fa-sitemap text-6xl text-gray-400 dark:text-gray-500"></i>
             </div>
             <h3 class="text-xl font-semibold text-gray-600 dark:text-gray-400 mb-2">
-                <?= LangManager::translate('sitemapexplorer.table.no_data') ?>
+                <?= LangManager::translate('SitemapExplorer.table.no_data') ?>
             </h3>
-            <p class="text-gray-500 dark:text-gray-400 mb-6"><?= LangManager::translate('sitemapexplorer.empty') ?></p>
+            <p class="text-gray-500 dark:text-gray-400 mb-6"><?= LangManager::translate('SitemapExplorer.empty') ?></p>
             <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>cmw-admin/sitemapexplorer/add"
                class="btn-primary inline-flex items-center">
-                <i class="fas fa-plus mr-2"></i><?= LangManager::translate('sitemapexplorer.add.title') ?>
+                <i class="fas fa-plus mr-2"></i><?= LangManager::translate('SitemapExplorer.add.title') ?>
             </a>
         </div>
     <?php else: ?>
@@ -110,16 +110,16 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
                 <thead class="bg-gray-50 dark:bg-gray-800">
                 <tr>
                     <th class="px-4 py-3 text-left font-semibold text-gray-700 dark:text-gray-300">
-                        <i class="fas fa-link mr-2"></i><?= LangManager::translate('sitemapexplorer.table.url') ?>
+                        <i class="fas fa-link mr-2"></i><?= LangManager::translate('SitemapExplorer.table.url') ?>
                     </th>
                     <th class="px-4 py-3 text-center font-semibold text-gray-700 dark:text-gray-300">
-                        <i class="fas fa-star mr-2"></i><?= LangManager::translate('sitemapexplorer.table.priority') ?>
+                        <i class="fas fa-star mr-2"></i><?= LangManager::translate('SitemapExplorer.table.priority') ?>
                     </th>
                     <th class="px-4 py-3 text-center font-semibold text-gray-700 dark:text-gray-300">
-                        <i class="fas fa-clock mr-2"></i><?= LangManager::translate('sitemapexplorer.table.lastmod') ?>
+                        <i class="fas fa-clock mr-2"></i><?= LangManager::translate('SitemapExplorer.table.lastmod') ?>
                     </th>
                     <th class="px-4 py-3 text-center font-semibold text-gray-700 dark:text-gray-300">
-                        <i class="fas fa-cogs mr-2"></i><?= LangManager::translate('sitemapexplorer.table.actions') ?>
+                        <i class="fas fa-cogs mr-2"></i><?= LangManager::translate('SitemapExplorer.table.actions') ?>
                     </th>
                 </tr>
                 </thead>
@@ -141,7 +141,7 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
                                     <div class="text-xs text-gray-500 dark:text-gray-400 flex items-center mt-1">
                                         <i class="fas fa-hashtag mr-1"></i>
                                         <span class="truncate">
-                                                <?= $item->getSlug() === '/' ? LangManager::translate('sitemapexplorer.labels.homepage') : $item->getSlug() ?>
+                                                <?= $item->getSlug() === '/' ? LangManager::translate('SitemapExplorer.labels.homepage') : $item->getSlug() ?>
                                             </span>
                                     </div>
                                 </div>
@@ -180,19 +180,19 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
                                 <a href="<?= $item->getLoc() ?>"
                                    target="_blank"
                                    class="btn-info-sm"
-                                   title="<?= LangManager::translate('sitemapexplorer.actions.view') ?>">
+                                   title="<?= LangManager::translate('SitemapExplorer.actions.view') ?>">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                                 <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>cmw-admin/sitemapexplorer/edit/<?= base64_encode($item->getSlug()) ?>"
                                    class="btn-primary-sm"
-                                   title="<?= LangManager::translate('sitemapexplorer.actions.edit') ?>">
+                                   title="<?= LangManager::translate('SitemapExplorer.actions.edit') ?>">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <button type="button"
                                         class="btn-danger-sm"
                                         data-modal-target="deleteModal<?= $index ?>"
                                         data-modal-toggle="deleteModal<?= $index ?>"
-                                        title="<?= LangManager::translate('sitemapexplorer.actions.delete') ?>">
+                                        title="<?= LangManager::translate('SitemapExplorer.actions.delete') ?>">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
@@ -202,7 +202,7 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
                                     <div class="modal-header-danger">
                                         <h3 class="text-lg font-semibold flex items-center">
                                             <i class="fas fa-exclamation-triangle mr-2"></i>
-                                            <?= LangManager::translate('sitemapexplorer.delete.confirm_title') ?>
+                                            <?= LangManager::translate('SitemapExplorer.delete.confirm_title') ?>
                                         </h3>
                                         <button type="button" class="text-white hover:text-gray-200"
                                                 data-modal-hide="deleteModal<?= $index ?>">
@@ -210,7 +210,7 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p class="mb-4"><?= LangManager::translate('sitemapexplorer.delete.confirm_message') ?></p>
+                                        <p class="mb-4"><?= LangManager::translate('SitemapExplorer.delete.confirm_message') ?></p>
                                         <div class="alert-warning">
                                             <div class="flex items-center">
                                                 <i class="fas fa-link mr-2"></i>
@@ -221,7 +221,7 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
                                     <div class="modal-footer">
                                         <button type="button" class="btn-secondary"
                                                 data-modal-hide="deleteModal<?= $index ?>">
-                                            <i class="fas fa-times mr-2"></i><?= LangManager::translate('sitemapexplorer.actions.cancel') ?>
+                                            <i class="fas fa-times mr-2"></i><?= LangManager::translate('SitemapExplorer.actions.cancel') ?>
                                         </button>
                                         <form method="post"
                                               action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>cmw-admin/sitemapexplorer/delete/<?= base64_encode($item->getSlug()) ?>"
@@ -229,7 +229,7 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
                                             <?php (new SecurityManager())->insertHiddenToken() ?>
                                             <button type="submit" class="btn-danger">
                                                 <i class="fas fa-trash mr-2"></i>
-                                                <?= LangManager::translate('sitemapexplorer.delete.confirm_button') ?>
+                                                <?= LangManager::translate('SitemapExplorer.delete.confirm_button') ?>
                                             </button>
                                         </form>
                                     </div>
@@ -248,7 +248,7 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
     <div class="card bg-gray-50 dark:bg-gray-800/50">
         <h6 class="font-semibold mb-3 flex items-center">
             <i class="fas fa-robot mr-2 text-gray-600 dark:text-gray-400"></i>
-            <?= LangManager::translate('sitemapexplorer.info.robots') ?>
+            <?= LangManager::translate('SitemapExplorer.info.robots') ?>
         </h6>
         <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
             Le fichier robots.txt référence automatiquement votre sitemap pour les moteurs de recherche.
@@ -257,17 +257,17 @@ Website::setDescription(LangManager::translate('sitemapexplorer.description'));
            target="_blank"
            class="btn-primary-sm inline-flex items-center">
             <i class="fas fa-external-link-alt mr-2"></i>
-            <?= LangManager::translate('sitemapexplorer.info.robots_link') ?>
+            <?= LangManager::translate('SitemapExplorer.info.robots_link') ?>
         </a>
     </div>
 
     <div class="card bg-blue-50 dark:bg-blue-900/20">
         <h6 class="font-semibold mb-3 flex items-center">
             <i class="fas fa-question-circle mr-2 text-blue-600 dark:text-blue-400"></i>
-            <?= LangManager::translate('sitemapexplorer.help.title') ?>
+            <?= LangManager::translate('SitemapExplorer.help.title') ?>
         </h6>
         <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
-            <?= LangManager::translate('sitemapexplorer.help.subtitle') ?>
+            <?= LangManager::translate('SitemapExplorer.help.subtitle') ?>
         </p>
         <div class="flex flex-wrap gap-2">
             <span class="badge-success">0.8-1.0</span>

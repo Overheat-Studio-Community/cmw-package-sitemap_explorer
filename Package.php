@@ -59,18 +59,18 @@ class Package implements IPackageConfigV2
         return [
             new PackageMenuType(
                 icon: 'fas fa-sitemap',
-                title: LangManager::translate('sitemapexplorer.menu.title'),
+                title: LangManager::translate('SitemapExplorer.menu.title'),
                 url: null,
                 permission: null,
                 subMenus: [
                     new PackageSubMenuType(
-                        title: LangManager::translate('sitemapexplorer.menu.list'),
-                        permission: 'sitemapexplorer.manage',
+                        title: LangManager::translate('SitemapExplorer.menu.list'),
+                        permission: 'SitemapExplorer.manage',
                         url: 'sitemapexplorer/list',
                     ),
                     new PackageSubMenuType(
-                        title: LangManager::translate('sitemapexplorer.menu.add'),
-                        permission: 'sitemapexplorer.create',
+                        title: LangManager::translate('SitemapExplorer.menu.add'),
+                        permission: 'SitemapExplorer.create',
                         url: 'sitemapexplorer/add',
                     ),
                 ]

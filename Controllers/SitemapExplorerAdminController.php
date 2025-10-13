@@ -24,7 +24,7 @@ class SitemapExplorerAdminController extends AbstractController
     #[Link("/list", Link::GET, scope: '/cmw-admin/sitemapexplorer')]
     private function main(): void
     {
-        UsersController::redirectIfNotHavePermissions('core.dashboard', 'sitemapexplorer.manage');
+        UsersController::redirectIfNotHavePermissions('core.dashboard', 'SitemapExplorer.manage');
 
         $sitemapItems = SitemapManager::getInstance()->getAll();
 
@@ -36,7 +36,7 @@ class SitemapExplorerAdminController extends AbstractController
     #[Link("/add", Link::GET, scope: '/cmw-admin/sitemapexplorer')]
     private function add(): void
     {
-        UsersController::redirectIfNotHavePermissions('core.dashboard', 'sitemapexplorer.create');
+        UsersController::redirectIfNotHavePermissions('core.dashboard', 'SitemapExplorer.create');
 
         View::createAdminView('SitemapExplorer', 'add')
             ->view();
@@ -45,7 +45,7 @@ class SitemapExplorerAdminController extends AbstractController
     #[NoReturn] #[Link("/add", Link::POST, scope: '/cmw-admin/sitemapexplorer')]
     private function addPost(): void
     {
-        UsersController::redirectIfNotHavePermissions('core.dashboard', 'sitemapexplorer.create');
+        UsersController::redirectIfNotHavePermissions('core.dashboard', 'SitemapExplorer.create');
 
         $slug = FilterManager::filterInputStringPost('slug');
         $priority = FilterManager::filterInputStringPost('priority', 4);
@@ -53,8 +53,8 @@ class SitemapExplorerAdminController extends AbstractController
         if (!$slug || $priority === false || $priority < 0 || $priority > 1) {
             Flash::send(
                 Alert::ERROR,
-                LangManager::translate('sitemapexplorer.flash.error.title'),
-                LangManager::translate('sitemapexplorer.flash.error.invalid_data')
+                LangManager::translate('SitemapExplorer.flash.error.title'),
+                LangManager::translate('SitemapExplorer.flash.error.invalid_data')
             );
             Redirect::redirectPreviousRoute();
         }
@@ -62,8 +62,8 @@ class SitemapExplorerAdminController extends AbstractController
         if (SitemapManager::getInstance()->getBySlug($slug)) {
             Flash::send(
                 Alert::ERROR,
-                LangManager::translate('sitemapexplorer.flash.error.title'),
-                LangManager::translate('sitemapexplorer.flash.error.url_exists')
+                LangManager::translate('SitemapExplorer.flash.error.title'),
+                LangManager::translate('SitemapExplorer.flash.error.url_exists')
             );
             Redirect::redirectPreviousRoute();
         }
@@ -71,14 +71,14 @@ class SitemapExplorerAdminController extends AbstractController
         if (SitemapManager::getInstance()->add($slug, $priority)) {
             Flash::send(
                 Alert::SUCCESS,
-                LangManager::translate('sitemapexplorer.flash.success.title'),
-                LangManager::translate('sitemapexplorer.flash.success.url_added')
+                LangManager::translate('SitemapExplorer.flash.success.title'),
+                LangManager::translate('SitemapExplorer.flash.success.url_added')
             );
         } else {
             Flash::send(
                 Alert::ERROR,
-                LangManager::translate('sitemapexplorer.flash.error.title'),
-                LangManager::translate('sitemapexplorer.flash.error.add_failed')
+                LangManager::translate('SitemapExplorer.flash.error.title'),
+                LangManager::translate('SitemapExplorer.flash.error.add_failed')
             );
         }
 
@@ -88,7 +88,7 @@ class SitemapExplorerAdminController extends AbstractController
     #[Link("/edit/:slug", Link::GET, ['slug' => '.*?'], '/cmw-admin/sitemapexplorer')]
     private function edit(string $slug): void
     {
-        UsersController::redirectIfNotHavePermissions('core.dashboard', 'sitemapexplorer.edit');
+        UsersController::redirectIfNotHavePermissions('core.dashboard', 'SitemapExplorer.edit');
 
         $slug = base64_decode($slug);
 
@@ -97,8 +97,8 @@ class SitemapExplorerAdminController extends AbstractController
         if (!$item) {
             Flash::send(
                 Alert::ERROR,
-                LangManager::translate('sitemapexplorer.flash.error.title'),
-                LangManager::translate('sitemapexplorer.flash.error.url_not_found')
+                LangManager::translate('SitemapExplorer.flash.error.title'),
+                LangManager::translate('SitemapExplorer.flash.error.url_not_found')
             );
             Redirect::redirectToAdmin('sitemapexplorer/list');
         }
@@ -112,7 +112,7 @@ class SitemapExplorerAdminController extends AbstractController
     #[NoReturn]
     private function editPost(string $slug): void
     {
-        UsersController::redirectIfNotHavePermissions('core.dashboard', 'sitemapexplorer.edit');
+        UsersController::redirectIfNotHavePermissions('core.dashboard', 'SitemapExplorer.edit');
 
         $slug = base64_decode($slug);
 
@@ -122,8 +122,8 @@ class SitemapExplorerAdminController extends AbstractController
         if (!$newSlug || $priority === false || $priority < 0 || $priority > 1) {
             Flash::send(
                 Alert::ERROR,
-                LangManager::translate('sitemapexplorer.flash.error.title'),
-                LangManager::translate('sitemapexplorer.flash.error.invalid_data')
+                LangManager::translate('SitemapExplorer.flash.error.title'),
+                LangManager::translate('SitemapExplorer.flash.error.invalid_data')
             );
             Redirect::redirectPreviousRoute();
         }
@@ -131,15 +131,15 @@ class SitemapExplorerAdminController extends AbstractController
         if (!SitemapManager::getInstance()->update($slug, $priority)) {
             Flash::send(
                 Alert::ERROR,
-                LangManager::translate('sitemapexplorer.flash.error.title'),
-                LangManager::translate('sitemapexplorer.flash.error.update_failed')
+                LangManager::translate('SitemapExplorer.flash.error.title'),
+                LangManager::translate('SitemapExplorer.flash.error.update_failed')
             );
         }
 
         Flash::send(
             Alert::SUCCESS,
-            LangManager::translate('sitemapexplorer.flash.success.title'),
-            LangManager::translate('sitemapexplorer.flash.success.url_updated')
+            LangManager::translate('SitemapExplorer.flash.success.title'),
+            LangManager::translate('SitemapExplorer.flash.success.url_updated')
         );
         Redirect::redirectPreviousRoute();
     }
@@ -148,21 +148,21 @@ class SitemapExplorerAdminController extends AbstractController
     #[NoReturn]
     private function delete(string $slug): void
     {
-        UsersController::redirectIfNotHavePermissions('core.dashboard', 'sitemapexplorer.delete');
+        UsersController::redirectIfNotHavePermissions('core.dashboard', 'SitemapExplorer.delete');
 
         $slug = base64_decode($slug);
 
         if (SitemapManager::getInstance()->delete($slug)) {
             Flash::send(
                 Alert::SUCCESS,
-                LangManager::translate('sitemapexplorer.flash.success.title'),
-                LangManager::translate('sitemapexplorer.flash.success.url_deleted')
+                LangManager::translate('SitemapExplorer.flash.success.title'),
+                LangManager::translate('SitemapExplorer.flash.success.url_deleted')
             );
         } else {
             Flash::send(
                 Alert::ERROR,
-                LangManager::translate('sitemapexplorer.flash.error.title'),
-                LangManager::translate('sitemapexplorer.flash.error.delete_failed')
+                LangManager::translate('SitemapExplorer.flash.error.title'),
+                LangManager::translate('SitemapExplorer.flash.error.delete_failed')
             );
         }
 

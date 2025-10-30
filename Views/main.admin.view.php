@@ -168,11 +168,15 @@ Website::setDescription(LangManager::translate('SitemapExplorer.description'));
                         <td class="px-4 py-3 text-center">
                             <div class="text-sm text-gray-900 dark:text-gray-100">
                                 <i class="fas fa-calendar-alt mr-1"></i>
-                                <?= date('d/m/Y', strtotime($item->getLastmod())) ?>
+                                <span id="date-<?= $item->getSlugEncoded() ?>">
+                                    <?= date('d/m/Y', strtotime($item->getLastmod())) ?>
+                                </span>
                             </div>
                             <div class="text-xs text-gray-500 dark:text-gray-400">
                                 <i class="fas fa-clock mr-1"></i>
-                                <?= date('H:i', strtotime($item->getLastmod())) ?>
+                                <span id="hour-<?= $item->getSlugEncoded() ?>">
+                                    <?= date('H:i', strtotime($item->getLastmod())) ?>
+                                </span>
                             </div>
                         </td>
                         <td class="px-4 py-3 text-center">
@@ -183,11 +187,18 @@ Website::setDescription(LangManager::translate('SitemapExplorer.description'));
                                    title="<?= LangManager::translate('SitemapExplorer.actions.view') ?>">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
-                                <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>cmw-admin/sitemapexplorer/edit/<?= base64_encode($item->getSlug()) ?>"
+                                <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>cmw-admin/sitemapexplorer/edit/<?= $item->getSlugEncoded() ?>"
                                    class="btn-primary-sm"
                                    title="<?= LangManager::translate('SitemapExplorer.actions.edit') ?>">
                                     <i class="fas fa-edit"></i>
                                 </a>
+                                <button type="button"
+                                        class="btn-success-sm cursor-pointer"
+                                        title="<?= LangManager::translate('SitemapExplorer.actions.refresh') ?>"
+                                        id="btn-refresh-<?= $item->getSlugEncoded() ?>"
+                                        onclick="refreshUrl('<?= $item->getSlugEncoded() ?>')">
+                                    <i class="fas fa-arrows-rotate"></i>
+                                </button>
                                 <button type="button"
                                         class="btn-danger-sm"
                                         data-modal-target="deleteModal<?= $index ?>"
@@ -224,7 +235,7 @@ Website::setDescription(LangManager::translate('SitemapExplorer.description'));
                                             <i class="fas fa-times mr-2"></i><?= LangManager::translate('SitemapExplorer.actions.cancel') ?>
                                         </button>
                                         <form method="post"
-                                              action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>cmw-admin/sitemapexplorer/delete/<?= base64_encode($item->getSlug()) ?>"
+                                              action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>cmw-admin/sitemapexplorer/delete/<?= $item->getSlugEncoded() ?>"
                                               class="inline">
                                             <?php (new SecurityManager())->insertHiddenToken() ?>
                                             <button type="submit" class="btn-danger">
@@ -276,3 +287,52 @@ Website::setDescription(LangManager::translate('SitemapExplorer.description'));
         </div>
     </div>
 </div>
+
+<!-- Refresh URL SCRIPT -->
+<script>
+    const refreshUrl = async (slugEncoded) => {
+        const btn = document.getElementById(`btn-refresh-${slugEncoded}`);
+        const btnIcon = btn.querySelector('i');
+
+        //set button to loading state
+        btn.disabled = true;
+        btnIcon.classList.add('fa-spin');
+
+        //Fetch the API to refresh the URL
+        let res = await fetch(`<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>cmw-admin/sitemapexplorer/api/refresh/${slugEncoded}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        let data = await res.json();
+
+        //Reset button state
+        btn.disabled = false;
+        btnIcon.classList.remove('fa-spin');
+
+        //Update UI + toaster
+        if (data.status === 1) {
+            const dateElem = document.getElementById(`date-${slugEncoded}`);
+            const hourElem = document.getElementById(`hour-${slugEncoded}`);
+
+            dateElem.textContent = data.date;
+            hourElem.textContent = data.hour;
+
+            iziToast.show(
+                {
+                    title: "<?= LangManager::translate('SitemapExplorer.flash.success.title') ?>",
+                    message: "<?= LangManager::translate('SitemapExplorer.flash.success.sitemap_refreshed') ?>",
+                    color: "green"
+                });
+        } else {
+            iziToast.show(
+                {
+                    title: "<?= LangManager::translate('SitemapExplorer.flash.error.title') ?>",
+                    message: data.message,
+                    color: "red"
+                });
+        }
+    }
+</script>

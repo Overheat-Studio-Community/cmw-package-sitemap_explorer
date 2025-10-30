@@ -57,6 +57,7 @@ return [
         'cancel' => 'Annuler',
         'save' => 'Enregistrer',
         'back' => 'Retour',
+        'refresh' => 'Rafraîchir le sitemap',
     ],
     'delete' => [
         'confirm_title' => 'Confirmer la suppression',
@@ -106,6 +107,7 @@ return [
             'url_added' => 'URL ajoutée avec succès au sitemap.',
             'url_updated' => 'URL mise à jour avec succès.',
             'url_deleted' => 'URL supprimée avec succès du sitemap.',
+            'sitemap_refreshed' => 'Sitemap mis à jour avec succès.',
         ],
     ],
     'labels' => [
@@ -181,5 +183,14 @@ return [
     ],
     'breadcrumb' => [
         'sitemap_explorer' => 'Sitemap Explorer',
+    ],
+    'api' => [
+        'errors' => [
+            'sitemap_not_found' => 'Sitemap introuvable.',
+            'sitemap_update_failed' => 'Échec de la mise à jour du sitemap.',
+        ],
+        'success' => [
+            'sitemap_updated' => 'Sitemap mis à jour avec succès.',
+        ],
     ],
 ];

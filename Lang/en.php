@@ -57,6 +57,7 @@ return [
         'cancel' => 'Cancel',
         'save' => 'Save',
         'back' => 'Back',
+        'refresh' => 'Refresh sitemap',
     ],
     'delete' => [
         'confirm_title' => 'Confirm deletion',
@@ -106,6 +107,7 @@ return [
             'url_added' => 'URL successfully added to sitemap.',
             'url_updated' => 'URL successfully updated.',
             'url_deleted' => 'URL successfully deleted from sitemap.',
+            'sitemap_refreshed' => 'Sitemap refreshed successfully.',
         ],
     ],
     'labels' => [
@@ -181,5 +183,14 @@ return [
     ],
     'breadcrumb' => [
         'sitemap_explorer' => 'Sitemap Explorer',
+    ],
+    'api' => [
+        'errors' => [
+            'sitemap_not_found' => 'Sitemap not found',
+            'sitemap_update_failed' => 'Failed to update sitemap',
+        ],
+        'success' => [
+            'sitemap_updated' => 'Sitemap updated successfully',
+        ],
     ],
 ];

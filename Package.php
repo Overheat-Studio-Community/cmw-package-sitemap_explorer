@@ -3,7 +3,7 @@
 namespace CMW\Package\SitemapExplorer;
 
 use CMW\Manager\Lang\LangManager;
-use CMW\Manager\Package\IPackageConfigV2;
+use CMW\Manager\Package\IPackageConfig;
 use CMW\Manager\Package\PackageMenuType;
 use CMW\Manager\Package\PackageSubMenuType;
 
@@ -12,7 +12,7 @@ use CMW\Manager\Package\PackageSubMenuType;
  * @package SitemapExplorer
  * @link https://craftmywebsite.fr/docs/fr/technical/creer-un-package/packagephp
  */
-class Package implements IPackageConfigV2
+class Package implements IPackageConfig
 {
     public function name(): string
     {
@@ -85,7 +85,7 @@ class Package implements IPackageConfigV2
 
     public function requiredPackages(): array
     {
-        return ['Core'];
+        return ['Core', 'OverApi'];
     }
 
     public function uninstall(): bool

@@ -33,14 +33,16 @@ class SitemapExplorerApiController extends AbstractController
             OverApi::returnData(['status' => 0, 'message' => LangManager::translate('SitemapExplorer.api.errors.sitemap_not_found')]);
         }
 
+        $currentDate = date('c');
+
         if (!SitemapManager::getInstance()->update($item->getSlug(), $item->getPriority())) {
             OverApi::returnData(['status' => 0, 'message' => LangManager::translate('SitemapExplorer.api.errors.sitemap_update_failed')]);
         }
 
         OverApi::returnData([
             'status' => 1,
-            'date' => date('d/m/Y', strtotime($item->getLastmod())),
-            'hour' => date('H:i', strtotime($item->getLastmod())),
+            'date' => date('d/m/Y', strtotime($currentDate)),
+            'hour' => date('H:i', strtotime($currentDate)),
             'message' => LangManager::translate('SitemapExplorer.api.success.sitemap_updated'),
         ]);
     }
